@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 35vh;
+    margin-top: 30vh;
     gap: 1rem;
 }
 .container1 {
@@ -17,7 +17,15 @@
 .container2 {
     text-align: center;
     border-radius: 3px;
-    border: solid #00205c 1px
+    border: solid whitesmoke 1px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    div {
+        font-size: 150px;
+    }
 }
 .container3 {
     display: flex;

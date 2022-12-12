@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimerMachineService } from './machine/timer.machine.service';
 
 @Component({
   selector: 'app-timer',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _: TimerMachineService) { }
 
   ngOnInit(): void {
+    this._.service.subscribe(state => {
+      if(state.value === 'running') {
+        setTimeout(() => {
+          this._.service.send('TICK')
+        }, 1000)
+      }
+    })
   }
 
 }

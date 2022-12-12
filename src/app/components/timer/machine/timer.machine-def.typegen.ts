@@ -4,7 +4,8 @@
   export interface Typegen0 {
         '@@xstate/typegen': true;
         internalEvents: {
-          "xstate.init": { type: "xstate.init" };
+          "": { type: "" };
+"xstate.init": { type: "xstate.init" };
         };
         invokeSrcNameMap: {
           
@@ -16,18 +17,21 @@
           services: never;
         };
         eventsCausingActions: {
-          
+          "addMinute": "ADD_MINUTE";
+"addSeconds": "ADD_SECONDS";
+"reset": "RESET" | "xstate.init";
+"tick": "TICK";
         };
         eventsCausingDelays: {
           
         };
         eventsCausingGuards: {
-          
+          "isTimeOut": "";
         };
         eventsCausingServices: {
           
         };
-        matchesStates: "idle" | "paused" | "running";
+        matchesStates: "expired" | "idle" | "paused" | "running";
         tags: never;
       }
   

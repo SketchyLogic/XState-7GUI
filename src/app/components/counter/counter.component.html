@@ -6,16 +6,16 @@
 
         <div class="container0">
             <div class="container1 containerBase">
-                <button (click)="counterMachine.service.send('DEACTIVATE')" [disabled]="state.value==='inactive'">Deactivate</button>
-                <button (click)="counterMachine.service.send('ACTIVATE')" [disabled]="state.value==='active'">Activate</button>
+                <button mat-raised-button (click)="counterMachine.service.send('DEACTIVATE')" [disabled]="state.value==='inactive'">Deactivate</button>
+                <button mat-raised-button (click)="counterMachine.service.send('ACTIVATE')" [disabled]="state.value==='active'">Activate</button>
             </div>
             
             
-            <div class="container2 containerBase">{{ctx.count}}</div>
+            <div class="container2 containerBase"><div>{{ctx.count}}</div></div>
             <div class="container3 containerBase">
-                <button (click)="counterMachine.service.send('INCREMENT')" [disabled]="state.value==='inactive'">+1</button>
-                <button (click)="counterMachine.service.send('DECREMENT')" [disabled]="state.value==='inactive'">-1</button>
-                <button (click)="counterMachine.service.send('RESET')" [disabled]="state.value==='inactive'">Reset</button>
+                <button mat-raised-button (click)="counterMachine.service.send('INCREMENT')" [disabled]="state.value==='inactive'">+1</button>
+                <button mat-raised-button (click)="counterMachine.service.send('DECREMENT')" [disabled]="state.value==='inactive'">-1</button>
+                <button mat-raised-button (click)="counterMachine.service.send('RESET')" [disabled]="state.value==='inactive'">Reset</button>
             </div>
         </div>
     </ng-container>

@@ -1,2 +1,23 @@
-<p>timer works!</p>
-<button mat-icon-button><mat-icon>play_arrow</mat-icon></button>
+<div *ngIf="_.context$ | async as ctx">
+    <ng-container *ngIf="_.state$ | async as state">
+    
+        <p>State: {{state.value}}</p>
+        <div>{{ctx.duration - ctx.elapsed > 0 ? ctx.duration - ctx.elapsed: 'DONE'}}</div>
+        <button (click)="_.service.send('TOGGLE')" *ngIf="state.value==='paused' || state.value==='idle'"
+            mat-icon-button><mat-icon>play_arrow</mat-icon>
+        </button>
+        <button (click)="_.service.send('TOGGLE')" *ngIf="state.value==='running'"
+            mat-icon-button><mat-icon>pause</mat-icon>
+        </button>
+        <button (click)="_.service.send('RESET')" *ngIf="state.value==='paused' || state.value==='expired'"
+            mat-icon-button><mat-icon>restart_alt</mat-icon>
+        </button>
+        <button (click)="_.service.send('ADD_MINUTE')" *ngIf="state.value==='running'"
+            mat-icon-button>+1:00
+        </button>
+        <div *ngIf="state.value==='running'">
+            <input type="number" #secondsToAdd>
+            <button mat-icon-button (click)="_.service.send('ADD_SECONDS', {secondsToAdd: +secondsToAdd.value})"><mat-icon>add</mat-icon></button>
+        </div>
+    </ng-container>
+</div>
