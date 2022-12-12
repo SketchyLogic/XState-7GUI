@@ -1,0 +1,22 @@
+<ng-container *ngIf="counterMachine.context$ | async as ctx">
+    <ng-container *ngIf="counterMachine.state$ | async as state">
+
+            > Counter
+            <p>Machine state: {{state.value}}</p>
+
+        <div class="container0">
+            <div class="container1 containerBase">
+                <button (click)="counterMachine.service.send('DEACTIVATE')" [disabled]="state.value==='inactive'">Deactivate</button>
+                <button (click)="counterMachine.service.send('ACTIVATE')" [disabled]="state.value==='active'">Activate</button>
+            </div>
+            
+            
+            <div class="container2 containerBase">{{ctx.count}}</div>
+            <div class="container3 containerBase">
+                <button (click)="counterMachine.service.send('INCREMENT')" [disabled]="state.value==='inactive'">+1</button>
+                <button (click)="counterMachine.service.send('DECREMENT')" [disabled]="state.value==='inactive'">-1</button>
+                <button (click)="counterMachine.service.send('RESET')" [disabled]="state.value==='inactive'">Reset</button>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

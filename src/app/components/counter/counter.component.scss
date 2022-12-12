@@ -1,0 +1,40 @@
+.container0 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 35vh;
+    gap: 1rem;
+}
+.container1 {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+
+    button {
+        flex: 1;
+    }
+}
+.container2 {
+    text-align: center;
+    border-radius: 3px;
+    border: solid #00205c 1px
+}
+.container3 {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+
+    button {
+        flex: 1;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.containerBase {
+    min-width: 30vw;
+}
