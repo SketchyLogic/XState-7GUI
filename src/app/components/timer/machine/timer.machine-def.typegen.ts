@@ -8,7 +8,7 @@
 "xstate.init": { type: "xstate.init" };
         };
         invokeSrcNameMap: {
-          
+          "ticker": "done.invoke.timerMachine.running:invocation[0]";
         };
         missingImplementations: {
           actions: never;
@@ -19,6 +19,7 @@
         eventsCausingActions: {
           "addMinute": "ADD_MINUTE";
 "addSeconds": "ADD_SECONDS";
+"addTimer": "ADD_TIMER";
 "reset": "RESET" | "xstate.init";
 "tick": "TICK";
         };
@@ -29,7 +30,7 @@
           "isTimeOut": "";
         };
         eventsCausingServices: {
-          
+          "ticker": "TOGGLE";
         };
         matchesStates: "expired" | "idle" | "paused" | "running";
         tags: never;

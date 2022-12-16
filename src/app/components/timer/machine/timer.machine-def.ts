@@ -14,15 +14,21 @@ export const timerMachine = createMachine({
 
     initial: 'idle',
     schema: {
+        services: {} as {
+            ticker: 
+            {
+                data: () => {}
+            };
+         },
         context: {} as TimerContext,
         events: {} as
             | { type: 'TOGGLE' }
             | { type: 'RESET' }
             | { type: 'ADD_MINUTE' }
-            | { type: 'TICK'}
+            | { type: 'TICK' }
             | { type: 'ADD_SECONDS'; secondsToAdd: number }
+            | { type: 'ADD_TIMER'; duration: number }
     },
-
     context: {
         duration: 3,
         elapsed: 0,
@@ -41,6 +47,9 @@ export const timerMachine = createMachine({
         running: {
             // entry: ['startTicking'],
             // exit: ['stopTicking'],
+            invoke: {
+                src: 'ticker'
+            },
             always: {
                 cond: 'isTimeOut',
                 target: 'expired'
@@ -62,9 +71,6 @@ export const timerMachine = createMachine({
                     // cond: 'isNotTimeOut',
                     actions: ['tick']
                 },
-                // {
-                //     target: 'expired',
-                // }
                 ]
             }
         },
@@ -85,12 +91,27 @@ export const timerMachine = createMachine({
                 }
             }
         }
+    },
+    on: {
+        ADD_TIMER: {
+            actions: ['addTimer']
+        }   
     }
 },
     {
+        services: {
+            ticker: (ctx, e) => {
+                return (cb) =>{
+                    const interval = setInterval(() => {
+                      cb('TICK');
+                    }, 1000);
+                    return () => clearInterval(interval);
+                }
+              }
+          },
         actions: {
             addMinute: (_) => {
-                if(_.duration+60 < 1000) {
+                if (_.duration + 60 < 1000) {
                     _.duration = _.duration + 60
                 }
                 else {
@@ -98,27 +119,18 @@ export const timerMachine = createMachine({
                 }
             },
             addSeconds: (_, e) => _.duration += e.secondsToAdd,
-            tick: (_) => _.elapsed+=1,
+            tick: (_) => _.elapsed += 1,
             reset: (_) => {
-                _.duration = 3,
-                _.elapsed = 0,
-                _.interval = 1
+                _.duration = 30,
+                    _.elapsed = 0,
+                    _.interval = 1
+            },
+            addTimer: (_, e) => {
+                
             }
-            // startTicking: (_) => {
-            //     let intervalId = setInterval(() => {
-            //         _.elapsed +=1;
-
-            //         if(_.duration - _.elapsed === 0) {
-            //             clearInterval(intervalId);
-            //         }
-            //     }, 1000)
-            //     _.stopTicking = () => clearInterval(intervalId)
-            // },
-            // stopTicking: (_) => _.stopTicking!(),
         },
         guards: {
-            // isNotTimeOut: (_) => _.duration - _.elapsed > 0,
             isTimeOut: (_) => _.duration - _.elapsed <= 0,
         }
     }
-    )
+)

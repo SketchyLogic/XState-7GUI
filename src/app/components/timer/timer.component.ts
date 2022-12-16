@@ -11,13 +11,16 @@ export class TimerComponent implements OnInit {
   constructor(public _: TimerMachineService) { }
 
   ngOnInit(): void {
-    this._.service.subscribe(state => {
-      if(state.value === 'running') {
-        setTimeout(() => {
-          this._.service.send('TICK')
-        }, 1000)
-      }
-    })
+    
+    // this._.service.subscribe(state => {
+    //   if(state.value === 'running') {
+    //     setTimeout(() => {
+    //       console.log('hi')
+    //       this._.service.send('TICK')
+    //     }, 1000)
+    //   }
+    // }
+    // )
   }
 
 }
