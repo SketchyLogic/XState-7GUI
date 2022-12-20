@@ -1,0 +1,11 @@
+<p>counter2 works!</p>
+
+<ng-container *ngIf="_.state$ | async as state">
+    <ng-container *ngIf="_.context$ | async as ctx">
+        <div>{{state.value}}</div>
+        <div>Switched-off count: {{ctx.count}}</div>
+        <button (click)="_.service.send('TOGGLE')">Toggle</button>
+        <button (click)="_.service.send('DISABLE')">Disable</button>
+        <button (click)="_.service.send('ENABLE')">Enable</button>
+    </ng-container>
+</ng-container>

@@ -1,0 +1,22 @@
+<p>sampleeee works!</p>
+
+<!-- <ng-container *ngIf="_.doggoWalkState$ | async as state">
+    <ng-container *ngIf="_.doggoWalkContext$ | async as ctx">
+        <p>State: {{state}}</p>
+        <p>CTX: {{ctx}}</p>
+    </ng-container>
+</ng-container> -->
+
+
+<div>
+    <div>
+        Micropohne
+        <button (click)="_.callMachineService.send('MUTE')">Mute</button>
+        <button (click)="_.callMachineService.send('UNMUTE')">Unmute</button>
+    </div>
+    <div>
+        Video
+        <button (click)="_.callMachineService.send('HIDE_VIDEO')">Hide</button>
+        <button (click)="_.callMachineService.send('SHOW_VIDEO')">Show</button>
+    </div>
+</div>

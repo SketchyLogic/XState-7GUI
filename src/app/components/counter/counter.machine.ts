@@ -8,14 +8,11 @@ import { counterMachine } from "./counter.machine-def";
 @Injectable({ providedIn: 'root' })
 export class CounterMachine {
     service = interpret(counterMachine).start();
-    
+    state$ = from(this.service);    
+    context$ = this.state$.pipe(map(s => s.context));
     // service = interpret(counterMachine.withConfig({
     //     actions: {
     //     }, services: {
     //     }
     // }), { devTools: true }).start();
-
-    state$ = from(this.service);
-
-    context$ = this.state$.pipe(map(s => s.context));
 }

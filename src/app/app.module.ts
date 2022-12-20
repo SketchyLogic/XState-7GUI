@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SampleComponent } from './components/sample/sample.component';
+import { Counter2Component } from './components/counter2/counter2.component';
+import { AuthenticatorComponent } from './components/authenticator/authenticator.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     TimerComponent,
     FlightBookerComponent,
     WorkshopComponent,
-
-
-    
+    SampleComponent,
+    Counter2Component,
+    AuthenticatorComponent,
   ],
   imports: [
     BrowserModule,
